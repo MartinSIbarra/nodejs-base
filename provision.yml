@@ -11,10 +11,7 @@
       with_items:
         - "{{ packages }}"
 
-
     - name: Nodejs instalado
+      become: yes
       include_role:
-        name: nodesource.node
-  handlers:
-    - name: restart ntpd
-      service: name=ntpd state=restarted
+        name: geerlingguy.nodejs
