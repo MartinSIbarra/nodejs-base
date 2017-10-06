@@ -6,7 +6,7 @@
 # Instalar VirtualBox
 # Instalar Vagrant
 # Clonar este repositorio
-vagrant plugin install vagrant-vbguest # OPCIONAL, SI ANDA MEJOR
+vagrant plugin install vagrant-vbguest
 git submodule init && git submodule update
 vagrant up
 ```
