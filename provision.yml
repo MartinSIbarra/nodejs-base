@@ -1,0 +1,20 @@
+---
+- hosts: all
+  vars:
+    packages:
+      - vim-nox
+
+  tasks:
+    - name: Paquetes basicos instalados
+      become: yes
+      apt: name={{ item }} state=latest install_recommends=no
+      with_items:
+        - "{{ packages }}"
+
+
+    - name: Nodejs instalado
+      include_role:
+        name: nodesource.node
+  handlers:
+    - name: restart ntpd
+      service: name=ntpd state=restarted
