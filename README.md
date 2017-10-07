@@ -1,19 +1,38 @@
 # Development local
 
-* Para iniciar la maquina local desde cero
+## Para iniciar la maquina local desde cero
+* Instalar VirtualBox
+* Instalar Vagrant
+* Instalar Babun
+```
+# Configuracion extra para que vagrant fucione bien en babun
+echo export VAGRANT_DETECTED_OS=dummy >> ~/.zshrc
+```
+
+* Instalar Ansible
+```
+# Dentro de una terminal babun
+cd # para ejecutarlo en el home
+curl -s https://raw.githubusercontent.com/tiangolo/ansible-babun-bootstrap/master/install.sh | source /dev/stdin
 
 ```
-# Instalar cygwin + apt-cyg
-# Instalar VirtualBox
-# Instalar Vagrant
-# Instalar Ansible
-apt-cyg install make automake gcc-g++ python3-devel
-apt-cyg install python3-pip
-CFLAGS="-g -O2 -D_BSD_SOURCE" python3 -m pip install -U pycrypto
-python3 -m pip install -U ansible
 
-# Clonar este repositorio
+* Instalar roles ansible
+```
+ansible-galaxy install geerlingguy.nodejs
+```
+
+* Clonar este repositorio
+
+* Instalar plugin vagrant virtualbox guest additions
+```
 vagrant plugin install vagrant-vbguest
-git submodule init && git submodule update
-vagrant up
+```
+
+* Levantar maquina 
+```vagrant up```
+
+* Provisionar maquina
+```
+ansible-playbook --private-key=.vagrant/machines/default/virtualbox/private_key -u vagrant -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory playbook.yml
 ```
